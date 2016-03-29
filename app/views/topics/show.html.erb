@@ -1,0 +1,7 @@
+<h1><%= @topic.title %></h1>
+<%= link_to "Edit Topic", edit_topic_path(@topic) %> |
+<%= link_to "Delete Topic", @topic, method: :delete, data: { confirm: 'Are you sure you want to delete topic?' } %> |
+<p><%= link_to "New Bookmark", new_topic_bookmark_path(@topic) %></p>
+<% for b in @topic.bookmarks %>
+    <%= render b %>
+<% end %>

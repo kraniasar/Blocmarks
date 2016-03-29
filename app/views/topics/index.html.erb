@@ -1,0 +1,5 @@
+<h2>All Bookmarks</h2>
+<%= content_tag :tr, class: "info", id: "topic-#{topic.id}" do %>
+  <td><%= link_to "New Topic", new_topic_path %></td>
+  <td><%= topic.name %></td>
+<% end %>

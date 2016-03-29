@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
 
+  get 'topics/index'
+
+  get 'topics/show'
+
+  get 'topics/new'
+
+  get 'topics/edit'
+
   get 'welcome/index'
 
   get 'welcome/about'
 
   devise_for :users
+
+  resources :topics do
+    resources :bookmarks, except: [:index]
+  end
+
+  post :incoming, to: 'incoming#create'
 
   root to: "welcome#index"
 
