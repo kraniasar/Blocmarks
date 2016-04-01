@@ -8,7 +8,6 @@ class BookmarksController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
     @bookmark = @topic.bookmarks.new
-    authorize @bookmark
   end
 
   def create
@@ -32,7 +31,6 @@ class BookmarksController < ApplicationController
   def update
     @topic = Topic.find(params[:topic_id])
     @bookmark = @topic.bookmarks.find(params[:id])
-    authorize @bookmark
 
     if @bookmark.update_attributes(params.require(:bookmark).permit(:url))
       redirect_to topics_path, notice: "Bookmark was updated"
@@ -44,7 +42,6 @@ class BookmarksController < ApplicationController
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
-    authorize @bookmark
 
     if @bookmark.destroy
       flash[:notice] = "Bookmark was deleted successfully."

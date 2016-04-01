@@ -1,20 +1,23 @@
-<h1>Topics  <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %></h1>
-
-<div class="row">
-  <div class="col-md-8">
+<h3>All Bookmarks</h3>
+<h6><%= link_to "New Topic", new_topic_path %></h6>
+<br>
+  <div>
     <% @topics.each do |topic| %>
-      <div class="media">
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= link_to "##{topic.title}", topic %>
-              <br>
-              <br>
-              <% topic.bookmarks.each do |bookmark| %>
-                <%= link_to bookmark.url, bookmark.url, :target => '_blank' %>
-                <br>
-              <% end %>
-          </h4>
-        </div>
-      </div>
-    <% end %>
-</div>
+      <table class="table">
+          <h4><%= link_to topic.title, topic %></h4>
+        <thead>
+            <tr>
+            <th>Bookmark URL</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% topic.bookmarks.each do |bookmark| %>
+            <tr>
+            <td><%= link_to bookmark.url, bookmark.url, target: '_blank' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+<br>

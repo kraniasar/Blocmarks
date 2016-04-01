@@ -1,40 +1,43 @@
 require 'faker'
 
-users = User.all?
+5.times do
+ user = User.new(
+   email:    Faker::Internet.email,
+   password: Faker::Lorem.characters(10)
+ )
+ user.save!
+end
 
-  Topic.create!(
-  user_id: "1"
+admin = User.new(
+  email:    "admin@blocmarks.us",
+  password: "helloworld"
+)
+admin.save!
+
+users = User.all
+
+Topic.create!(
+  user_id: 6,
   title: "First Topic"
-  )
+)
 
-  Topic.create!(
-  user_id: "2"
+Topic.create!(
+  user_id: 6,
   title: "Second Topic"
-  )
+)
 
-  topics = Topic.all
+topics = Topic.all
 
-  topics.each do |topic|
-    2.times do
-      topic.bookmarks.create!(
-      user_id: "1",
-      url: Faker::Internet.url("example.com")
-      )
-    end
-  end
+20.times do
+ app = Bookmark.create!(
+   topic:   topics.sample,
+   url: Faker::Internet.url('example.com')
+ )
+end
 
-  topics.each do |topic|
-    2.times do
-      topic.bookmarks.create!(
-      user_id: "2"
-      url: Faker::Internet.url("example.com")
-      )
-    end
-  end
+bookmarks = Bookmark.all
 
-  bookmarks = Bookmark.all
-
-  puts "Seed finished"
-  puts "#{User.count} users created"
-  puts "#{Topic.count} lists created"
-  puts "#{Bookmark.count} items created"
+puts "Seed finished"
+puts "#{User.count} users created"
+puts "#{Topic.count} lists created"
+puts "#{Bookmark.count} items created"
