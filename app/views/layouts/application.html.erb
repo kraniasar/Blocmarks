@@ -15,6 +15,7 @@
        </div>
        <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+            <li><%= link_to 'All topics', topics_path, :class => 'navbar-link' %></li>
             <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
             <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
             <li><p class="navbar-text navbar-right">Signed in as: <strong><%= current_user.email %></strong></p></li>

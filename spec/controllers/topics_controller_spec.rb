@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+    @topic = FactoryGirl.create(:topic)
+    @user.topics << @topic
+  end
 
   describe "GET #index" do
     it "returns http success" do
@@ -11,7 +17,7 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, {id: @topic.id}
       expect(response).to have_http_status(:success)
     end
   end
@@ -25,7 +31,7 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit
+      get :edit, {id: @topic.id}
       expect(response).to have_http_status(:success)
     end
   end
