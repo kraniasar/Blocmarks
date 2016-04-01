@@ -1,0 +1,23 @@
+<h3>All Bookmarks</h3>
+<h6><%= link_to "New Topic", new_topic_path %></h6>
+<br>
+  <div>
+    <% @topics.each do |topic| %>
+      <table class="table">
+          <h4><%= link_to topic.title, topic %></h4>
+        <thead>
+            <tr>
+            <th>Bookmark URL</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% topic.bookmarks.each do |bookmark| %>
+            <tr>
+            <td><%= link_to bookmark.url, bookmark.url, target: '_blank' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+<br>
