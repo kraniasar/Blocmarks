@@ -1,7 +1,19 @@
-<h1><%= @topic.title %></h1>
-<%= link_to "Edit Topic", edit_topic_path(@topic) %> |
-<%= link_to "Delete Topic", @topic, method: :delete, data: { confirm: 'Are you sure you want to delete topic?' } %> |
-<p><%= link_to "New Bookmark", new_topic_bookmark_path(@topic) %></p>
-<% for b in @topic.bookmarks %>
-    <%= render b %>
-<% end %>
+<center><h1><%= @topic.title %></h1></center>
+<center><%= link_to "Edit", edit_topic_path(@topic), class: 'btn btn-success' %> <%= link_to "Delete", @topic, method: :delete, class: 'btn btn-danger' %></center>
+<br>
+<%= link_to "Add new bookmark", new_topic_bookmark_path(@topic), class: 'btn btn-success' %>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-8">
+    <% @bookmarks.each do |bookmark| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to bookmark.url, bookmark.url, :target => '_blank' %>  <%= link_to "Edit", edit_topic_bookmark_path(@topic, bookmark), class: 'btn btn-success' %>
+            <%= link_to "Delete", topic_bookmark_path(bookmark.topic, bookmark), method: :delete, class: 'btn btn-danger' %>
+          </h4>
+        </div>
+      </div>
+    <% end %>
+</div>

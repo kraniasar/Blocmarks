@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
 
-  
-
   describe "GET #index" do
     it "returns http success" do
       get :index
@@ -13,11 +11,10 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show, {id: my_topic.id}
+      get :show
       expect(response).to have_http_status(:success)
     end
-
-
+  end
 
   describe "GET #new" do
     it "returns http success" do
@@ -32,5 +29,4 @@ RSpec.describe TopicsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
 end
