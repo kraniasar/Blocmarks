@@ -10,12 +10,6 @@ RSpec.describe BookmarksController, type: :controller do
     @topic.bookmarks << @bookmark
   end
 
-  describe "GET #show" do
-    it "returns http success" do
-      get :show, {id: @bookmark.id}
-      expect(response).to have_http_status(:success)
-    end
-  end
 
   describe "GET #new" do
     it "returns http success" do
@@ -26,7 +20,7 @@ RSpec.describe BookmarksController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit, {id: @bookmark.id}
+      get :edit, {topic_id: @topic.id, id: @bookmark.id}
       expect(response).to have_http_status(:success)
     end
   end
