@@ -17,3 +17,5 @@
 /tmp
 
 /coverage/*
+
+config/application.yml

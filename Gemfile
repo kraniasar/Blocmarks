@@ -22,6 +22,7 @@ gem 'bootswatch-rails'
 gem 'figaro'
 gem 'devise'
 gem 'embedly'
+gem 'pundit'
 
 group :development, :test do
   gem 'sqlite3'

@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   def index
     @topics = Topic.all
   end
@@ -10,6 +13,7 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    authorize @topic
   end
 
   def create
@@ -28,6 +32,7 @@ class TopicsController < ApplicationController
 
   def edit
     @topic = Topic.find(params[:id])
+    authorize @topic
   end
 
   def update
@@ -45,6 +50,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic = Topic.find(params[:id])
+    authorize @topic
 
     if @topic.destroy
       flash[:notice] = "\"#{@topic.title}\" was deleted successfully."
@@ -56,7 +62,13 @@ class TopicsController < ApplicationController
   end
 
   private
-    def topic_params
-      params.require(:topic).permit(:title)
-    end
+
+  def topic_params
+    params.require(:topic).permit(:title)
   end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || topics_path)
+  end
+end
