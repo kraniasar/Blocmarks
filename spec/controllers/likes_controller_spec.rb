@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BookmarksController, type: :controller do
+RSpec.describe LikesController, type: :controller do
   before(:each) do
     @user = FactoryGirl.create(:user)
     sign_in @user
@@ -13,15 +13,15 @@ RSpec.describe BookmarksController, type: :controller do
 
   describe "GET #new" do
     it "returns http success" do
-      get :new, {topic_id: @topic.id}
-      expect(response).to have_http_status(:success)
+      # post like here
+      # check that like was successful
     end
   end
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit, {topic_id: @topic.id, id: @bookmark.id}
-      expect(response).to redirect_to(topics_path)
+      # destroy like here
+      # check that like was successful
     end
   end
 

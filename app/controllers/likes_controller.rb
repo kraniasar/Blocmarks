@@ -3,35 +3,26 @@ class LikesController < ApplicationController
   def create
     @bookmark = Bookmark.find(params[:bookmark_id])
     like = current_user.likes.build(bookmark: @bookmark)
-    @like = like
-    authorize like
 
     if like.save
-      flash[:notice] = "Like was created"
+      flash[:notice] = "You have successfully liked this bookmark"
+      redirect_to topics_path
     else
-      flash[:error] = "Error creating like"
+      flash[:error] = "You were not able to like this bookmark. Please try again"
     end
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def destroy
-    @bookmark = Bookmark.find(params[:bookmark_id])
-    like = Like.find(params[:id])
-    authorize like
+
+    like = current_user.likes.find(params[:id])
 
     if like.destroy
-      flash[:notice] = "Like was destroyed"
+      flash[:notice] = "Like has been deleted"
+      redirect_to topics_path
     else
-      flash[:error] = "Error destroying like"
-    end
-
-    respond_to do |format|
-      format.html
-      format.js
+      flash[:error] = "Unable to delete like. Please try again"
+      redirect_to topics_path
     end
   end
 end
