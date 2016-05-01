@@ -1,0 +1,5 @@
+var $el = $('#bookmark-<%= @bookmark.id %>');
+$el.removeClass('glyphicon-star');
+$el.addClass('glyphicon-star-empty');
+$el.parent('a').data('method', 'post');
+$el.parent('a').attr('href', '<%= bookmark_likes_path(@bookmark, Like.new) %>');

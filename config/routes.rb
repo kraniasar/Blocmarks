@@ -4,11 +4,13 @@ Rails.application.routes.draw do
     resources :bookmarks, except: [:index]
   end
 
+  resources :bookmarks, except: [:index] do
+    resources :likes, only: [:index, :create, :destroy]
+  end
+
   devise_for :users
 
-  resources :users, only: [:show] do
-        resources :items, only: [:create, :destroy]
-  end
+  resources :users, only: [:show]
 
   get 'welcome/index'
 

@@ -13,7 +13,8 @@
         <tbody>
           <% topic.bookmarks.each do |bookmark| %>
             <tr>
-            <td><%= link_to bookmark.url, "#{bookmark.url}", :target => '_blank' %></td>
+            <td><%= render partial: 'likes/like', locals: { bookmark: bookmark } %></td> 
+            <td><%= link_to bookmark.url, bookmark.url, :target => '_blank' %></td>
             <td><%= link_to "edit", edit_topic_bookmark_path(topic, bookmark) %></td>
             <td><%= link_to "destroy", topic_bookmark_path(topic, bookmark), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
             </tr>
